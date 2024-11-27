@@ -23,7 +23,7 @@ const Index = () => {
               Add Chain to Wallet 🦊
             </Button>
             <Button size="lg" variant="outline" onClick={() => window.open("https://github.com/caffeinum", "_blank")}>
-              ⭐️ Star on GitHub
+              ⭐️ Follow me on GitHub
             </Button>
           </div>
         </div>
@@ -80,6 +80,19 @@ const Index = () => {
         </Card>
       </div>
 
+      {/* Demo Video */}
+      <div className="container py-24">
+        <h2 className="text-4xl font-bold mb-12">Demo Video 📹</h2>
+        <div style={{ position: 'relative', paddingBottom: '65.21739130434783%', height: 0 }}>
+          <iframe 
+            src="https://www.loom.com/embed/7cebf20917134700af55cedb9873baa9?sid=5f6858d3-4955-418d-a50a-a8f326083e4e" 
+            frameBorder="0" 
+            allowFullScreen 
+            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+          />
+        </div>
+      </div>
+
       {/* Demo Contract */}
       <div className="container py-24">
         <h2 className="text-4xl font-bold mb-12">Demo Contract 🤖</h2>
@@ -101,21 +114,28 @@ const Index = () => {
         <h2 className="text-4xl font-bold mb-12">How to Start 🛠️</h2>
         <Card className="p-8 space-y-6">
           <div>
+            <h3 className="text-xl font-bold mb-4">0. Update foundry.toml</h3>
+            <code className="block bg-muted p-4 rounded-lg font-mono">
+              [rpc_endpoints]
+              moai = "http://34.90.221.16"
+            </code>
+          </div>
+          <div>
             <h3 className="text-xl font-bold mb-4">1. Check Connection</h3>
             <code className="block bg-muted p-4 rounded-lg font-mono">
-              cast block-number -r http://34.90.221.16
+              cast block-number -r moai
             </code>
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4">2. Bridge from Sepolia</h3>
             <code className="block bg-muted p-4 rounded-lg font-mono">
-              cast send {`<BRIDGE_ADDRESS>`} --value {`<AMOUNT>`} --rpc-url sepolia
+              cast send 0x8FFa37c4493e9621fdCC4a0E6959d5c8f1B2F0c2 --value 0.1ether --rpc-url sepolia
             </code>
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4">3. Deploy Contract</h3>
             <code className="block bg-muted p-4 rounded-lg font-mono">
-              cast create src/AIAgent.sol
+              forge create -r moai src/AIAgent.sol
             </code>
           </div>
           <div>
@@ -127,13 +147,32 @@ const Index = () => {
         </Card>
       </div>
 
+      {/* FAQ Section */}
+      <div className="container py-24">
+        <h2 className="text-4xl font-bold mb-12">FAQ 🤔</h2>
+        <Card className="p-8 space-y-8">
+          <div>
+            <h3 className="text-xl font-bold mb-2">What is MoAI Chain?</h3>
+            <p>MoAI Chain is an L2 blockchain with a native AI precompile at 0xA1A1A1. You can call it directly from your smart contracts!</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold mb-2">How much does it cost?</h3>
+            <p>It's free to use! Just bridge some ETH from Sepolia testnet.</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold mb-2">Is it secure?</h3>
+            <p>The chain is in beta. Use at your own risk and don't bridge mainnet funds.</p>
+          </div>
+        </Card>
+      </div>
+
       {/* Footer */}
       <footer className="border-t border-border">
         <div className="container py-8 flex justify-between items-center">
           <p>Built by MoAI chads 💪</p>
           <div className="flex gap-4">
             <a href="https://twitter.com/caffeinum" className="hover:text-primary">🐦 Twitter</a>
-            <a href="https://github.com/caffeinum" className="hover:text-primary">🐙 GitHub</a>
+            <a href="https://github.com/caffeinum" className="hover:text-primary">🐙 Follow me on GitHub</a>
           </div>
         </div>
       </footer>
