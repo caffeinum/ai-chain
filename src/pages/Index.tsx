@@ -4,7 +4,7 @@ import { ArrowRight, Code2, Cpu, Zap } from "lucide-react";
 
 const Index = () => {
   const handleAddChain = () => {
-    window.open("https://chainid.link/?chainId=42069&chainName=MoAI%20Chain&currencyName=ETH&currencySymbol=ETH&currencyDecimals=18&rpcUrl=http%3A%2F%2F34.90.221.16&blockExplorerUrl=", "_blank");
+    window.open("https://chainid.link/?chainId=42069&chainName=MoAI%20Chain&currencyName=ETH&currencySymbol=ETH&currencyDecimals=18&rpcUrl=http%3A%2F%2F34.90.201.113%3A8545&blockExplorerUrl=", "_blank");
   };
 
   return (
@@ -117,7 +117,7 @@ const Index = () => {
             <h3 className="text-xl font-bold mb-4">0. Update foundry.toml</h3>
             <code className="block bg-muted p-4 rounded-lg font-mono">
               [rpc_endpoints]
-              moai = "http://34.90.221.16"
+              moai = "http://34.90.201.113:8545"
             </code>
           </div>
           <div>
