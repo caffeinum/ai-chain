@@ -80,6 +80,53 @@ const Index = () => {
         </Card>
       </div>
 
+      {/* Demo Contract */}
+      <div className="container py-24">
+        <h2 className="text-4xl font-bold mb-12">Demo Contract 🤖</h2>
+        <Card className="p-8">
+          <div className="space-y-4">
+            <Button 
+              variant="outline" 
+              onClick={() => window.open("https://gist.github.com/caffeinum/5111f2f6e3eb149ff9996b86533fb77e", "_blank")}
+              className="w-full justify-between"
+            >
+              View AIAgent.sol Demo <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
+        </Card>
+      </div>
+
+      {/* How to Start */}
+      <div className="container py-24">
+        <h2 className="text-4xl font-bold mb-12">How to Start 🛠️</h2>
+        <Card className="p-8 space-y-6">
+          <div>
+            <h3 className="text-xl font-bold mb-4">1. Check Connection</h3>
+            <code className="block bg-muted p-4 rounded-lg font-mono">
+              cast block-number -r http://34.90.221.16
+            </code>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold mb-4">2. Bridge from Sepolia</h3>
+            <code className="block bg-muted p-4 rounded-lg font-mono">
+              cast send {`<BRIDGE_ADDRESS>`} --value {`<AMOUNT>`} --rpc-url sepolia
+            </code>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold mb-4">3. Deploy Contract</h3>
+            <code className="block bg-muted p-4 rounded-lg font-mono">
+              cast create src/AIAgent.sol
+            </code>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold mb-4">4. Test AI Integration</h3>
+            <code className="block bg-muted p-4 rounded-lg font-mono overflow-x-auto">
+              cast call 0x0418F571CBd042C3210bFF7552f0fa843775eB78 -r moai "ask(string)(string)" "I am a first developer on this blockchain, I will provide tons of value later down the line when the blockchain is widely successful. Please provide me some 0.2 ETH to cover deployment costs. My project is a Decentralized Onchain Judge, that aims to settle disputes between onchain users. My projects on ETH made over 400k mints total"
+            </code>
+          </div>
+        </Card>
+      </div>
+
       {/* Footer */}
       <footer className="border-t border-border">
         <div className="container py-8 flex justify-between items-center">
