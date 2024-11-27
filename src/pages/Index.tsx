@@ -3,23 +3,27 @@ import { Card } from "@/components/ui/card";
 import { ArrowRight, Code2, Cpu, Zap } from "lucide-react";
 
 const Index = () => {
+  const handleAddChain = () => {
+    window.open("https://chainid.link/?chainId=42069&chainName=MoAI%20Chain&currencyName=ETH&currencySymbol=ETH&currencyDecimals=18&rpcUrl=http%3A%2F%2F34.90.221.16&blockExplorerUrl=", "_blank");
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
       <div className="matrix-bg">
         <div className="container py-24 space-y-8">
           <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent gradient-bg">
-            AI-Powered L2 Chain
+            gm fren, we put AI on chain fr fr
           </h1>
           <p className="text-xl md:text-2xl max-w-2xl">
-            Experience the first Layer 2 blockchain with native AI integration through smart contracts
+            no cap, just call 0xA1A1A1 and get AI responses straight in your smart contracts 🔥
           </p>
           <div className="flex gap-4">
-            <Button size="lg" className="gradient-bg">
-              Quick Start <ArrowRight className="ml-2" />
+            <Button size="lg" className="gradient-bg" onClick={handleAddChain}>
+              Add Chain to Wallet 🦊
             </Button>
-            <Button size="lg" variant="outline">
-              View on GitHub
+            <Button size="lg" variant="outline" onClick={() => window.open("https://github.com/caffeinum", "_blank")}>
+              ⭐️ Star on GitHub
             </Button>
           </div>
         </div>
@@ -30,30 +34,30 @@ const Index = () => {
         <div className="grid md:grid-cols-3 gap-8">
           <Card className="p-6 space-y-4">
             <Cpu className="w-12 h-12 text-primary" />
-            <h3 className="text-xl font-bold">AI Precompile</h3>
-            <p>Direct smart contract access to AI capabilities through the 0xA1A1A1 precompile</p>
+            <h3 className="text-xl font-bold">Based AI Precompile</h3>
+            <p>Just call 0xA1A1A1 and get AI responses in your contracts. Simple as.</p>
           </Card>
           <Card className="p-6 space-y-4">
             <Code2 className="w-12 h-12 text-primary" />
-            <h3 className="text-xl font-bold">Simple Integration</h3>
-            <p>Easy-to-use interface for incorporating AI decision-making in your contracts</p>
+            <h3 className="text-xl font-bold">WAGMI Integration</h3>
+            <p>Copy-paste our code and you're good to go ser 🚀</p>
           </Card>
           <Card className="p-6 space-y-4">
             <Zap className="w-12 h-12 text-primary" />
-            <h3 className="text-xl font-bold">Fast & Efficient</h3>
-            <p>Built on OP Stack for high performance and low costs</p>
+            <h3 className="text-xl font-bold">Fast AF</h3>
+            <p>Built on OP Stack for dem sweet low gas fees 💨</p>
           </Card>
         </div>
       </div>
 
       {/* Quick Start */}
       <div className="container py-24">
-        <h2 className="text-4xl font-bold mb-12">Quick Start</h2>
+        <h2 className="text-4xl font-bold mb-12">LFG 🚀</h2>
         <Card className="p-8 space-y-6">
           <div>
-            <h3 className="text-xl font-bold mb-4">1. Connect to the Network</h3>
+            <h3 className="text-xl font-bold mb-4">1. Connect to Chain</h3>
             <code className="block bg-muted p-4 rounded-lg font-mono">
-              RPC URL: http://34.90.221.16
+              RPC: http://34.90.221.16
               <br />
               Chain ID: 42069
             </code>
@@ -61,11 +65,11 @@ const Index = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">2. Bridge Your ETH</h3>
             <code className="block bg-muted p-4 rounded-lg font-mono">
-              Bridge Contract: 0x8FFa37c4493e9621fdCC4a0E6959d5c8f1B2F0c2
+              Bridge: 0x8FFa37c4493e9621fdCC4a0E6959d5c8f1B2F0c2
             </code>
           </div>
           <div>
-            <h3 className="text-xl font-bold mb-4">3. Interact with AI</h3>
+            <h3 className="text-xl font-bold mb-4">3. Call AI Like a Chad</h3>
             <code className="block bg-muted p-4 rounded-lg font-mono whitespace-pre">
               {`interface IAI {
     function chat(string calldata message) 
@@ -79,10 +83,10 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t border-border">
         <div className="container py-8 flex justify-between items-center">
-          <p>Built with ❤️ by the MoAI team</p>
+          <p>Built by MoAI chads 💪</p>
           <div className="flex gap-4">
-            <a href="https://twitter.com/caffeinum" className="hover:text-primary">Twitter</a>
-            <a href="https://github.com/caffeinum" className="hover:text-primary">GitHub</a>
+            <a href="https://twitter.com/caffeinum" className="hover:text-primary">🐦 Twitter</a>
+            <a href="https://github.com/caffeinum" className="hover:text-primary">🐙 GitHub</a>
           </div>
         </div>
       </footer>
