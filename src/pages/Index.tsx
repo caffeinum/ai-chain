@@ -57,7 +57,7 @@ const Index = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">1. Connect to Chain</h3>
             <code className="block bg-muted p-4 rounded-lg font-mono">
-              RPC: http://34.90.221.16
+              RPC: http://34.90.201.113:8545
               <br />
               Chain ID: 42069
             </code>
