@@ -52,7 +52,7 @@ const Index = () => {
           </Card>
           <Card className="p-6 space-y-4">
             <Code2 className="w-12 h-12 text-primary" />
-            <h3 className="text-xl font-bold">WAGMI Integration</h3>
+            <h3 className="text-xl font-bold">WAGMI</h3>
             <p>Copy-paste our code and you're good to go ser 🚀</p>
           </Card>
           <Card className="p-6 space-y-4">
