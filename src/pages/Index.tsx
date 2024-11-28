@@ -14,27 +14,42 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
       <div className="matrix-bg">
-        <div className="container py-24 space-y-8">
-          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-white gradient-bg">
-            gm fren, we put AI on chain fr fr
-          </h1>
-          <p className="text-xl md:text-2xl max-w-2xl">
-            no cap, just call 0xA1A1A1 and get AI responses straight in your
-            smart contracts 🔥
-          </p>
-          <div className="flex gap-4">
-            <Button size="lg" className="gradient-bg" onClick={handleAddChain}>
-              Add Chain to Wallet 🦊
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() =>
-                window.open("https://github.com/caffeinum", "_blank")
-              }
-            >
-              ⭐️ Follow me on GitHub
-            </Button>
+        <div className="container py-24">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-white gradient-bg">
+                gm fren, we put AI on chain fr fr
+              </h1>
+              <p className="text-xl md:text-2xl max-w-2xl">
+                no cap, just call 0xA1A1A1 and get AI responses straight in your
+                smart contracts 🔥
+              </p>
+              <div className="flex gap-4">
+                <Button
+                  size="lg"
+                  className="gradient-bg"
+                  onClick={handleAddChain}
+                >
+                  Add Chain to Wallet 🦊
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={() =>
+                    window.open("https://github.com/caffeinum", "_blank")
+                  }
+                >
+                  ⭐️ Follow me on GitHub
+                </Button>
+              </div>
+            </div>
+            <div className="relative" style={{ aspectRatio: '3/2' }}>
+              <img
+                src="/hero.webp"
+                alt="AI Chain Hero"
+                className="rounded-lg object-cover w-full h-full"
+              />
+            </div>
           </div>
         </div>
       </div>
