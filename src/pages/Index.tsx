@@ -65,8 +65,48 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Solidity Code Example */}
-      <div className="container py-12">
+      {/* Features */}
+      <div className="container py-24">
+        <div className="grid md:grid-cols-3 gap-8">
+          <Card className="p-6 space-y-4">
+            <Cpu className="w-12 h-12 text-primary" />
+            <h3 className="text-xl font-bold">Based AI Precompile</h3>
+            <p>
+              Just call 0xA1A1A1 and get AI responses in your contracts. Simple
+              as.
+            </p>
+          </Card>
+          <Card className="p-6 space-y-4">
+            <Code2 className="w-12 h-12 text-primary" />
+            <h3 className="text-xl font-bold">WAGMI</h3>
+            <p>Copy-paste our code and you're good to go ser 🚀</p>
+          </Card>
+          <Card className="p-6 space-y-4">
+            <Zap className="w-12 h-12 text-primary" />
+            <h3 className="text-xl font-bold">Fast AF</h3>
+            <p>Built on OP Stack for dem sweet low gas fees 💨</p>
+          </Card>
+        </div>
+      </div>
+
+      {/* Demo Contract */}
+      <div className="container py-24">
+        <h2 className="text-4xl font-bold mb-12">Demo Contract 🤖</h2>
+        <div className="space-y-4 flex justify-center">
+          <Button
+            variant="outline"
+            onClick={() =>
+              window.open(
+                "https://gist.github.com/caffeinum/5111f2f6e3eb149ff9996b86533fb77e",
+                "_blank"
+              )
+            }
+            className="w-full"
+          >
+            View AIAgent.sol Demo <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
+
         <div className="relative h-[80vh] rounded-lg overflow-hidden shadow-lg">
           <pre className="absolute inset-0 overflow-auto bg-[#2d2d2d] scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent">
             <code className="block p-6 font-mono text-sm language-solidity">
@@ -169,30 +209,6 @@ contract AIAgent {
         </div>
       </div>
 
-      {/* Features */}
-      <div className="container py-24">
-        <div className="grid md:grid-cols-3 gap-8">
-          <Card className="p-6 space-y-4">
-            <Cpu className="w-12 h-12 text-primary" />
-            <h3 className="text-xl font-bold">Based AI Precompile</h3>
-            <p>
-              Just call 0xA1A1A1 and get AI responses in your contracts. Simple
-              as.
-            </p>
-          </Card>
-          <Card className="p-6 space-y-4">
-            <Code2 className="w-12 h-12 text-primary" />
-            <h3 className="text-xl font-bold">WAGMI</h3>
-            <p>Copy-paste our code and you're good to go ser 🚀</p>
-          </Card>
-          <Card className="p-6 space-y-4">
-            <Zap className="w-12 h-12 text-primary" />
-            <h3 className="text-xl font-bold">Fast AF</h3>
-            <p>Built on OP Stack for dem sweet low gas fees 💨</p>
-          </Card>
-        </div>
-      </div>
-
       {/* Quick Start */}
       <div className="container py-24">
         <h2 className="text-4xl font-bold mb-12">LFG 🚀</h2>
@@ -247,27 +263,6 @@ interface IAI {
             }}
           />
         </div>
-      </div>
-
-      {/* Demo Contract */}
-      <div className="container py-24">
-        <h2 className="text-4xl font-bold mb-12">Demo Contract 🤖</h2>
-        <Card className="p-8">
-          <div className="space-y-4">
-            <Button
-              variant="outline"
-              onClick={() =>
-                window.open(
-                  "https://gist.github.com/caffeinum/5111f2f6e3eb149ff9996b86533fb77e",
-                  "_blank"
-                )
-              }
-              className="w-full bg-muted justify-between"
-            >
-              View AIAgent.sol Demo <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </div>
-        </Card>
       </div>
 
       {/* How to Start */}
