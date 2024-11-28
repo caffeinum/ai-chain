@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,8 +6,12 @@
 
 @layer base {
   :root {
+    /* only used in the header
     --background: 260 25% 11%;
-    --foreground: 0 0% 100%;
+    --foreground: 0 0% 100%; */
+
+    --background: 220 23% 95%;
+    --foreground: 220 23% 5%;
 
     --card: 260 25% 11%;
     --card-foreground: 0 0% 100%;
@@ -38,13 +42,22 @@
   }
 }
 
+body {
+  font-family: "Space Grotesk", sans-serif;
+}
+
 .gradient-bg {
-  background: linear-gradient(135deg, #7B3FE4 0%, #00A3FF 100%);
+  background: linear-gradient(135deg, #7b3fe4 0%, #00a3ff 100%);
+  backdrop-filter: blur(20px);
 }
 
 .matrix-bg {
   position: relative;
   overflow: hidden;
+
+  /* previous background kept for header */
+  background: rgb(26, 26, 26);
+  color: rgb(220, 220, 220);
 }
 
 .matrix-bg::before {
@@ -54,7 +67,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
   z-index: 1;
 }
 
@@ -64,5 +77,5 @@
 }
 
 code {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
 }

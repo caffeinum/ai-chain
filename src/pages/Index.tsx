@@ -42,7 +42,7 @@ const Index = () => {
                 </Button>
                 <Button
                   size="lg"
-                  variant="outline"
+                  variant="secondary"
                   className="w-full sm:w-auto"
                   onClick={() =>
                     window.open("https://github.com/caffeinum", "_blank")
@@ -262,7 +262,7 @@ interface IAI {
                   "_blank"
                 )
               }
-              className="w-full justify-between"
+              className="w-full bg-muted justify-between"
             >
               View AIAgent.sol Demo <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
