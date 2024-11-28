@@ -5,7 +5,7 @@ import { ArrowRight, Code2, Cpu, Zap } from "lucide-react";
 const Index = () => {
   const handleAddChain = () => {
     window.open(
-      "https://chainid.link/?chainId=42069&chainName=MoAI%20Chain&currencyName=ETH&currencySymbol=ETH&currencyDecimals=18&rpcUrl=http%3A%2F%2Frpc.ai.caffeinum.com%3A8545&blockExplorerUrl=",
+      "https://chainid.link/?chainId=42069&chainName=mo%2Eai&currencyName=ETH&currencySymbol=ETH&currencyDecimals=18&rpcUrl=http%3A%2F%2Frpc.ai.caffeinum.com%3A8545&blockExplorerUrl=",
       "_blank"
     );
   };
