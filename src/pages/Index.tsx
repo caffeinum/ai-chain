@@ -13,7 +13,7 @@ const Index = () => {
 
   const handleAddChain = () => {
     window.open(
-      "https://chainid.link/?chainId=42069&chainName=mo%2Eai&currencyName=ETH&currencySymbol=ETH&currencyDecimals=18&rpcUrl=http%3A%2F%2Frpc.ai.caffeinum.com%3A8545&blockExplorerUrl=",
+      "https://chainid.link/?chainId=42069&chainName=mo%2Eai&currencyName=ETH&currencySymbol=ETH&currencyDecimals=18&rpcUrl=https%3A%2F%2Frpc.moai.cash&blockExplorerUrl=http%3A%2F%2Fexplorer.moai.cash",
       "_blank"
     );
   };
@@ -114,8 +114,16 @@ const Index = () => {
 pragma solidity ^0.8.19;
 
 interface IAI {
-    function chat(string calldata message) external returns (string memory);
+    /// @notice Chat with the AI system and receive a string response
+    /// @param systemPrompt The system prompt to set the AI's context
+    /// @param userMessage The user's message to the AI
+    /// @return The AI's response as a string
+    function chat(
+        string calldata systemPrompt,
+        string calldata userMessage
+    ) external returns (string memory);
 }
+
 
 contract AIAgent {
     string public constant AI_PROMPT =
@@ -232,8 +240,10 @@ contract AIAgent {
             <code className="block bg-muted p-4 rounded-lg font-mono whitespace-pre">
               {`
 interface IAI {
-    function chat(string calldata message) 
-    external returns (string memory);
+    function chat(
+        string calldata systemPrompt,
+        string calldata userMessage
+    ) external returns (string memory);
 }`}
             </code>
           </div>
@@ -251,7 +261,7 @@ interface IAI {
           }}
         >
           <iframe
-            src="https://www.loom.com/embed/7cebf20917134700af55cedb9873baa9?sid=5f6858d3-4955-418d-a50a-a8f326083e4e"
+            src="https://www.loom.com/embed/fefb99afe5f944a09a918d9327d4d409?sid=4008764b-b8c7-48a7-8048-5bddf03ffa8c"
             frameBorder="0"
             allowFullScreen
             style={{
@@ -272,7 +282,7 @@ interface IAI {
           <div>
             <h3 className="text-xl font-bold mb-4">0. Update foundry.toml</h3>
             <code className="block bg-muted p-4 rounded-lg font-mono">
-              [rpc_endpoints] moai = "http://rpc.ai.caffeinum.com:8545"
+              [rpc_endpoints] moai = "https://rpc.moai.cash"
             </code>
           </div>
           <div>
