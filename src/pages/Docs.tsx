@@ -1,5 +1,10 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { CodeBlock } from "@/components/ui/code-block";
+import Prism from "prismjs";
+import "prismjs/components/prism-typescript";
+import "prismjs/components/prism-bash";
+import "prismjs/components/prism-solidity";
+import "prismjs/themes/prism-tomorrow.css";
 
 const DocsSidebar = () => (
   <div className="w-64 fixed h-screen border-r border-border overflow-y-auto p-4">
@@ -16,6 +21,9 @@ const DocsSidebar = () => (
 );
 
 const Docs: FC = () => {
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
   return (
     <div className="min-h-screen bg-background">
       <DocsSidebar />
