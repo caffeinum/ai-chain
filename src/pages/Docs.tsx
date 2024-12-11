@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const DocsPage: FC = () => {
+const Docs: FC = () => {
   return (
     <div className="container mx-auto py-10 px-4">
       <div className="max-w-4xl mx-auto">
@@ -178,4 +178,4 @@ const result = await ai.inference(params);`}
   );
 };
 
-export default DocsPage;
+export default Docs;
