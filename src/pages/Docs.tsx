@@ -36,21 +36,59 @@ const Docs: FC = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <h3 className="text-xl font-semibold">What is Moai Chain?</h3>
-                <p>
-                  Moai Chain is a revolutionary blockchain platform that brings AI capabilities directly onchain. 
-                  It enables developers to integrate AI functionalities into their smart contracts and dApps 
-                  without relying on external oracles or centralized services.
-                </p>
+                <div className="space-y-6">
+                  <section>
+                    <h3 className="text-xl font-semibold">What is Moai Chain?</h3>
+                    <p className="mt-2">
+                      Moai Chain is a Layer 2 blockchain solution that brings native AI capabilities directly onchain. 
+                      It enables developers to integrate AI functionalities into their smart contracts and dApps 
+                      without relying on external oracles or centralized services.
+                    </p>
+                  </section>
 
-                <h3 className="text-xl font-semibold mt-6">Key Features</h3>
-                <ul className="list-disc pl-6 space-y-2">
-                  <li>Native AI execution environment</li>
-                  <li>EVM compatibility</li>
-                  <li>Decentralized AI model marketplace</li>
-                  <li>Low-latency inference</li>
-                  <li>Chain ID: 80418041</li>
-                </ul>
+                  <section>
+                    <h3 className="text-xl font-semibold">Quick Setup</h3>
+                    <div className="mt-2 space-y-4">
+                      <CodeBlock>
+                        {`# 1. Install Moai CLI
+npm install -g @moai/cli
+
+# 2. Create new project
+moai create my-ai-dapp
+
+# 3. Navigate to project
+cd my-ai-dapp
+
+# 4. Start development
+npm run dev`}
+                      </CodeBlock>
+                    </div>
+                  </section>
+
+                  <section>
+                    <h3 className="text-xl font-semibold">Key Features</h3>
+                    <ul className="list-disc pl-6 space-y-2 mt-2">
+                      <li><strong>Native AI Execution:</strong> Call AI models directly from smart contracts</li>
+                      <li><strong>EVM Compatibility:</strong> 100% compatible with Ethereum tools and standards</li>
+                      <li><strong>AI Model Marketplace:</strong> Deploy and monetize AI models onchain</li>
+                      <li><strong>Low-latency Inference:</strong> Optimized for fast AI computations</li>
+                      <li><strong>Developer Tools:</strong> Comprehensive SDK, CLI, and documentation</li>
+                    </ul>
+                  </section>
+
+                  <section>
+                    <h3 className="text-xl font-semibold">Network Details</h3>
+                    <div className="bg-muted p-4 rounded-lg mt-2">
+                      <ul className="space-y-1">
+                        <li><strong>Chain ID:</strong> 80418041</li>
+                        <li><strong>Currency Symbol:</strong> MOAI</li>
+                        <li><strong>RPC URL:</strong> https://rpc.moai.network</li>
+                        <li><strong>Block Time:</strong> 2 seconds</li>
+                        <li><strong>Explorer:</strong> https://explorer.moai.network</li>
+                      </ul>
+                    </div>
+                  </section>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>
@@ -96,33 +134,80 @@ const Docs: FC = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <h3 className="text-xl font-semibold">Setting Up Your Environment</h3>
-                <div className="space-y-2">
-                  <h4 className="font-medium">1. Foundry Configuration</h4>
-                  <div className="bg-muted p-4 rounded-lg">
-                    <code>
-                      {`// foundry.toml
-[profile.default]
-chain_id = 80418041
-// ... other config`}
-                    </code>
-                  </div>
+                <h3 className="text-xl font-semibold">Setting Up Your Development Environment</h3>
+                <div className="space-y-4">
+                  <section>
+                    <h4 className="font-medium">1. Install Dependencies</h4>
+                    <CodeBlock>
+                      {`npm install @moai/sdk ethers hardhat
+# or with yarn
+yarn add @moai/sdk ethers hardhat`}
+                    </CodeBlock>
+                  </section>
 
-                  <h4 className="font-medium mt-4">2. IAI Interface Integration</h4>
-                  <p>
-                    Import and use the IAI interface to interact with onchain AI capabilities:
-                  </p>
-                  <div className="bg-muted p-4 rounded-lg mt-2">
-                    <code>
-                      {`import { IAI } from "@moai/interfaces";
+                  <section>
+                    <h4 className="font-medium">2. Configure Your Network</h4>
+                    <CodeBlock>
+                      {`// hardhat.config.ts
+export default {
+  networks: {
+    moai: {
+      url: "https://rpc.moai.network",
+      chainId: 80418041,
+      accounts: [process.env.PRIVATE_KEY]
+    }
+  }
+}`}
+                    </CodeBlock>
+                  </section>
 
-// Initialize AI interface
-const ai = IAI(aiContractAddress);
+                  <section>
+                    <h4 className="font-medium">3. Initialize MoAI SDK</h4>
+                    <CodeBlock>
+                      {`import { MoaiSDK } from '@moai/sdk';
 
-// Make AI calls
-const result = await ai.inference(params);`}
-                    </code>
-                  </div>
+const moai = new MoaiSDK({
+  rpcUrl: "https://rpc.moai.network",
+  privateKey: process.env.PRIVATE_KEY
+});`}
+                    </CodeBlock>
+                  </section>
+
+                  <section>
+                    <h4 className="font-medium">4. Make Your First AI Call</h4>
+                    <CodeBlock>
+                      {`// Example: Text generation using onchain AI
+const response = await moai.ai.generate({
+  prompt: "What is blockchain?",
+  maxTokens: 100,
+  temperature: 0.7
+});
+
+console.log(response.text);`}
+                    </CodeBlock>
+                  </section>
+
+                  <section>
+                    <h4 className="font-medium">5. Deploy AI-Enabled Smart Contract</h4>
+                    <CodeBlock language="solidity">
+                      {`// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.19;
+
+import "@moai/contracts/IAI.sol";
+
+contract AIEnabled {
+    IAI public ai;
+    
+    constructor(address _aiAddress) {
+        ai = IAI(_aiAddress);
+    }
+    
+    function generateText(string memory prompt) public returns (string memory) {
+        return ai.generate(prompt);
+    }
+}`}
+                    </CodeBlock>
+                  </section>
                 </div>
               </CardContent>
             </Card>
