@@ -124,7 +124,7 @@ contract AIGreeter {
     </div>
 
         <Tabs defaultValue="getting-started" className="space-y-4">
-          <TabsList>
+          <TabsList className="space-x-2">
             <TabsTrigger value="getting-started">Getting Started</TabsTrigger>
             <TabsTrigger value="wallet">Wallet Connection</TabsTrigger>
             <TabsTrigger value="development">Development Guide</TabsTrigger>
