@@ -54,7 +54,7 @@ const Docs: FC = () => {
             <CodeBlock>
               {`# Add network to your wallet
 Chain ID: 80418041
-RPC URL: https://rpc.moai.network
+RPC URL: https://rpc.moai.ltd
 Currency: MOAI
 
 # Get testnet tokens
