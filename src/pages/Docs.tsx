@@ -14,9 +14,10 @@ const Docs: FC = () => {
   return (
     <div className="container mx-auto py-10 px-4">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6">Moai Chain Documentation</h1>
+        <h1 className="text-4xl font-bold mb-6">🌊 Moai Chain Documentation</h1>
         <p className="text-lg text-muted-foreground mb-8">
-          Learn how to integrate and develop with Moai Chain - the first blockchain with native AI capabilities
+          Welcome to the comprehensive guide for Moai Chain - the first Layer 2 blockchain with native AI capabilities. 
+          Learn how to build powerful AI-enabled dApps using our suite of developer tools and SDKs.
         </p>
 
         <Tabs defaultValue="getting-started" className="space-y-4">
@@ -40,9 +41,14 @@ const Docs: FC = () => {
                   <section>
                     <h3 className="text-xl font-semibold">What is Moai Chain?</h3>
                     <p className="mt-2">
-                      Moai Chain is a Layer 2 blockchain solution that brings native AI capabilities directly onchain. 
-                      It enables developers to integrate AI functionalities into their smart contracts and dApps 
-                      without relying on external oracles or centralized services.
+                      Moai Chain is a revolutionary Layer 2 blockchain solution that brings native AI capabilities directly onchain. 
+                      Built on top of Ethereum, it enables developers to seamlessly integrate AI functionalities into their 
+                      smart contracts and dApps through our 0xA1A1A1 precompile contract.
+                    </p>
+                    <p className="mt-2">
+                      Unlike traditional blockchain AI solutions that rely on oracles or off-chain computation, 
+                      Moai Chain executes AI operations directly within the EVM, ensuring true decentralization, 
+                      deterministic results, and atomic composability with other smart contracts.
                     </p>
                   </section>
 
