@@ -58,7 +58,7 @@ RPC URL: https://rpc.moai.ltd
 Currency: MOAI
 
 # Get testnet tokens
-Visit faucet.moai.network`}
+Visit faucet.moai.ltd`}
             </CodeBlock>
           </section>
 
