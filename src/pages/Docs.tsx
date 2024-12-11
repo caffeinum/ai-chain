@@ -176,27 +176,80 @@ moai = { key = "your_api_key", url = "https://explorer.moai.network" }`}
                     <CodeBlock>
                       {`// Import and use the IAI interface to interact with onchain AI capabilities
 import { IAI } from "@moai/interfaces";
+import { ethers } from "ethers";
 
-// Initialize AI interface
-const ai = IAI(aiContractAddress);
+// Initialize provider and signer
+const provider = new ethers.providers.JsonRpcProvider("https://rpc.moai.network");
+const signer = new ethers.Wallet(process.env.PRIVATE_KEY!, provider);
 
-// Make AI calls
+// Initialize AI interface with TypeScript typing
+const ai = IAI.connect(aiContractAddress, signer);
+
+// Example: Basic text generation
 const result = await ai.inference({
-  prompt: "Your prompt here",
+  prompt: "Explain how blockchain works",
   maxTokens: 100,
   temperature: 0.7
 });
 
-// Example with TypeScript types
+// Example: Image generation
+const image = await ai.generateImage({
+  prompt: "A futuristic city with flying cars",
+  size: "1024x1024",
+  style: "photorealistic"
+});
+
+// Example: Code completion
+const code = await ai.completeCode({
+  language: "solidity",
+  prompt: "Write a basic ERC20 token contract",
+  maxTokens: 500
+});
+
+// Advanced: Streaming responses
+const stream = await ai.inferenceStream({
+  prompt: "Write a story",
+  maxTokens: 1000
+});
+
+for await (const chunk of stream) {
+  console.log(chunk); // Process chunks as they arrive
+}
+
+// TypeScript interfaces for type safety
 interface InferenceParams {
   prompt: string;
   maxTokens?: number;
   temperature?: number;
   model?: string;
+  stream?: boolean;
 }
 
+interface ImageGenParams {
+  prompt: string;
+  size?: "256x256" | "512x512" | "1024x1024";
+  style?: "photorealistic" | "artistic" | "anime";
+  negative_prompt?: string;
+}
+
+interface CodeCompletionParams {
+  language: string;
+  prompt: string;
+  maxTokens?: number;
+  temperature?: number;
+}
+
+// Helper function for error handling
 async function generateAIResponse(params: InferenceParams): Promise<string> {
-  return await ai.inference(params);
+  try {
+    return await ai.inference(params);
+  } catch (error) {
+    if (error.code === 'RATE_LIMIT_EXCEEDED') {
+      await sleep(1000);
+      return generateAIResponse(params); // Retry
+    }
+    throw error;
+  }
 }`}
                     </CodeBlock>
                   </section>
