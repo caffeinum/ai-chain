@@ -146,81 +146,57 @@ npm run dev`}
                     <h4 className="font-medium">1. Install Required Dependencies</h4>
                     <CodeBlock>
                       {`# Using npm
-npm install --save-dev @moai/sdk@latest ethers@^6.0.0 hardhat@^2.19.0 @nomicfoundation/hardhat-toolbox
+npm install --save-dev @moai/sdk@latest @openzeppelin/contracts dotenv foundry-rs
 
 # Using yarn
-yarn add --dev @moai/sdk@latest ethers@^6.0.0 hardhat@^2.19.0 @nomicfoundation/hardhat-toolbox`}
+yarn add --dev @moai/sdk@latest @openzeppelin/contracts dotenv foundry-rs`}
                     </CodeBlock>
                   </section>
 
                   <section>
-                    <h4 className="font-medium">2. Configure Development Environment</h4>
+                    <h4 className="font-medium">2. Configure Foundry Environment</h4>
                     <CodeBlock>
-                      {`// hardhat.config.ts
-import { HardhatUserConfig } from "hardhat/config";
-import "@nomicfoundation/hardhat-toolbox";
-import * as dotenv from "dotenv";
+                      {`# foundry.toml
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+chain_id = 80418041
 
-dotenv.config();
+[rpc_endpoints]
+moai = "https://rpc.moai.network"
 
-const config: HardhatUserConfig = {
-  solidity: {
-    version: "0.8.19",
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200
-      }
-    }
-  },
-  networks: {
-    moai: {
-      url: process.env.MOAI_RPC_URL || "https://rpc.moai.network",
-      chainId: 80418041,
-      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
-      verify: {
-        etherscan: {
-          apiUrl: "https://explorer.moai.network"
-        }
-      }
-    }
-  }
-};
-
-export default config;`}
+[etherscan]
+moai = { key = "your_api_key", url = "https://explorer.moai.network" }`}
                     </CodeBlock>
                   </section>
 
                   <section>
-                    <h4 className="font-medium">3. Initialize MoAI SDK & AI Interface</h4>
+                    <h4 className="font-medium">3. Initialize IAI Interface</h4>
                     <CodeBlock>
-                      {`import { MoaiSDK, IAIProvider } from '@moai/sdk';
-import { ethers } from 'ethers';
+                      {`// Import and use the IAI interface to interact with onchain AI capabilities
+import { IAI } from "@moai/interfaces";
 
-// Initialize provider and signer
-const provider = new ethers.JsonRpcProvider(process.env.MOAI_RPC_URL);
-const signer = new ethers.Wallet(process.env.PRIVATE_KEY!, provider);
+// Initialize AI interface
+const ai = IAI(aiContractAddress);
 
-// Initialize MoAI SDK
-const moai = new MoaiSDK({
-  provider,
-  signer,
-  aiContractAddress: "0xA1A1A1..." // Replace with actual AI contract address
+// Make AI calls
+const result = await ai.inference({
+  prompt: "Your prompt here",
+  maxTokens: 100,
+  temperature: 0.7
 });
 
-// Get AI interface
-const ai = moai.getAIInterface();
+// Example with TypeScript types
+interface InferenceParams {
+  prompt: string;
+  maxTokens?: number;
+  temperature?: number;
+  model?: string;
+}
 
-// Example: Make an AI inference call
-async function generateText(prompt: string) {
-  const response = await ai.inference({
-    prompt,
-    maxTokens: 100,
-    temperature: 0.7,
-    model: "gpt-3.5-turbo"
-  });
-  
-  return response.text;
+async function generateAIResponse(params: InferenceParams): Promise<string> {
+  return await ai.inference(params);
 }`}
                     </CodeBlock>
                   </section>
@@ -231,15 +207,26 @@ async function generateText(prompt: string) {
                       {`// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "@moai/contracts/interfaces/IAI.sol";
+import "@moai/interfaces/IAI.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract AIEnabled is Ownable {
+contract AIAgent is Ownable, ReentrancyGuard {
     IAI public immutable ai;
+    uint256 public constant MAX_TOKENS = 1000;
     
-    event AIResponse(address indexed caller, string prompt, string response);
+    event AIInference(
+        address indexed caller,
+        string prompt,
+        string response,
+        uint256 timestamp
+    );
+    
+    error InvalidAIResponse();
+    error MaxTokensExceeded();
     
     constructor(address _aiAddress) {
+        if (_aiAddress == address(0)) revert("Zero address");
         ai = IAI(_aiAddress);
     }
     
@@ -247,7 +234,10 @@ contract AIEnabled is Ownable {
         string calldata prompt,
         uint256 maxTokens,
         uint256 temperature
-    ) external returns (string memory) {
+    ) external nonReentrant returns (string memory) {
+        // Validate parameters
+        if (maxTokens > MAX_TOKENS) revert MaxTokensExceeded();
+        
         // Call the AI interface
         string memory response = ai.inference(
             prompt,
@@ -255,7 +245,16 @@ contract AIEnabled is Ownable {
             temperature
         );
         
-        emit AIResponse(msg.sender, prompt, response);
+        // Validate response
+        if (bytes(response).length == 0) revert InvalidAIResponse();
+        
+        emit AIInference(
+            msg.sender,
+            prompt,
+            response,
+            block.timestamp
+        );
+        
         return response;
     }
     
@@ -263,8 +262,9 @@ contract AIEnabled is Ownable {
     receive() external payable {}
     
     // Allow owner to withdraw ETH
-    function withdraw() external onlyOwner {
-        (bool success, ) = owner().call{value: address(this).balance}("");
+    function withdraw() external onlyOwner nonReentrant {
+        uint256 balance = address(this).balance;
+        (bool success, ) = owner().call{value: balance}("");
         require(success, "Transfer failed");
     }
 }`}
