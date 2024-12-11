@@ -64,8 +64,54 @@ Visit faucet.moai.ltd`}
 
           <section id="deploy" className="mb-16">
             <h2 className="text-2xl font-bold mb-4">Deploy First Contract</h2>
+            
+            <h3 className="text-xl font-semibold mb-3">1. Get MOAI tokens</h3>
             <p className="mb-4">
-              Create and deploy an AI-enabled smart contract:
+              To deploy contracts on Moai Chain, you'll need MOAI tokens. You can get them in two ways:
+            </p>
+            <ul className="list-disc pl-6 space-y-2 mb-4">
+              <li>Use the bridge at <a href="https://bridge.moai.ltd" className="text-primary hover:underline">bridge.moai.ltd</a> to bridge ETH from Optimism</li>
+              <li>Get testnet tokens from <a href="https://faucet.moai.ltd" className="text-primary hover:underline">faucet.moai.ltd</a></li>
+            </ul>
+
+            <h3 className="text-xl font-semibold mb-3">2. Set up Foundry</h3>
+            <p className="mb-4">
+              We'll use Foundry for development. First, install it:
+            </p>
+            <CodeBlock language="bash">
+              {`curl -L https://foundry.paradigm.xyz | bash
+foundryup`}
+            </CodeBlock>
+
+            <h3 className="text-xl font-semibold mb-3 mt-4">3. Create new project</h3>
+            <p className="mb-4">
+              Initialize a new Foundry project:
+            </p>
+            <CodeBlock language="bash">
+              {`forge init ai-greeter
+cd ai-greeter`}
+            </CodeBlock>
+
+            <h3 className="text-xl font-semibold mb-3 mt-4">4. Configure Foundry</h3>
+            <p className="mb-4">
+              Create foundry.toml with Moai Chain configuration:
+            </p>
+            <CodeBlock>
+              {`[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+
+[rpc_endpoints]
+moai = "https://rpc.moai.ltd"
+
+[etherscan]
+moai = { key = "" } # No key needed for Moai Chain`}
+            </CodeBlock>
+
+            <h3 className="text-xl font-semibold mb-3 mt-4">5. Create Contract</h3>
+            <p className="mb-4">
+              Create src/AIGreeter.sol:
             </p>
             <CodeBlock language="solidity">
               {`// SPDX-License-Identifier: MIT
@@ -85,6 +131,21 @@ contract AIGreeter {
     }
 }`}
             </CodeBlock>
+
+            <h3 className="text-xl font-semibold mb-3 mt-4">6. Deploy Contract</h3>
+            <p className="mb-4">
+              Deploy to Moai Chain using your private key (replace with your actual key):
+            </p>
+            <CodeBlock language="bash">
+              {`forge create --rpc-url https://rpc.moai.ltd \
+  --private-key YOUR_PRIVATE_KEY \
+  src/AIGreeter.sol:AIGreeter \
+  --constructor-args 0xA1A1A1`}
+            </CodeBlock>
+
+            <p className="mt-4 text-sm text-muted-foreground">
+              Note: The AI interface is available at address 0xA1A1A1 on Moai Chain
+            </p>
           </section>
 
           <section id="ai-interface" className="mb-16">
